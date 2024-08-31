@@ -1,6 +1,9 @@
 postgres:
 	docker-compose up -d
 
+outps:
+	docker-compose down
+
 createdb:
 	docker exec -it postgres_container createdb -U root -O root simple_app
 
@@ -16,4 +19,7 @@ migratedown:
 sqlc:
 	sqlc generate
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc
+test:
+	go test -v -cover ./...
+
+.PHONY: postgres outps createdb dropdb migrateup migratedown sqlc
