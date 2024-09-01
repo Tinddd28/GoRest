@@ -8,7 +8,7 @@ createdb:
 	docker exec -it postgres_container createdb -U root -O root simple_app
 
 dropdb:
-	docker exec -it postgres_container dropdb simple_app
+	docker exec -it postgres_container dropdb simple_app -f
 
 migrateup:
 	migrate -path db/migration -database "postgresql://root:12345678@localhost:5432/simple_app?sslmode=disable" -verbose up
