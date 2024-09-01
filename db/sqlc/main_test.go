@@ -10,6 +10,7 @@ import (
 )
 
 var testQueries *Queries
+var connPool *pgxpool.Pool
 
 const (
 	dbDriver = "postgres"
@@ -17,8 +18,8 @@ const (
 )
 
 func TestMain(m *testing.M) {
-
-	connPool, err := pgxpool.New(context.Background(), dbSource)
+	var err error
+	connPool, err = pgxpool.New(context.Background(), dbSource)
 	if err != nil {
 		log.Fatal("cannot connect to db:", err)
 	}
